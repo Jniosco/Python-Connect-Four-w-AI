@@ -156,6 +156,7 @@ def check_win(board, last_location_row, last_location_col, piece):
     count = 0
     col = last_location_col
     row = last_location_row
+    # lol
 
     for c in range(col, COLUMN_COUNT):
         if board[row][c] != piece:
