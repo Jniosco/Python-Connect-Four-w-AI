@@ -282,15 +282,17 @@ def score_position(board, piece, col, row):
         point = [row - 3, col - 3]
 
     # creates END point of diagonal
-    if (row + WINDOW_LENGTH) >= ROW_COUNT and (col <= row):
-        end = [ROW_COUNT, COLUMN_COUNT - (row - col)]
-    elif ((row <= col) and (col + WINDOW_LENGTH >= COLUMN_COUNT)):
-        end = [ROW_COUNT - (col - row), COLUMN_COUNT]
+
+    if (row + WINDOW_LENGTH) >= ROW_COUNT and col <= row:
+        end = [ROW_COUNT, col + (ROW_COUNT - row)]
+    elif ((row < col) and (col + WINDOW_LENGTH >= COLUMN_COUNT)):
+        end = [row + (COLUMN_COUNT - col), COLUMN_COUNT]
     else:
         end = [row + WINDOW_LENGTH, col + WINDOW_LENGTH]
-
+    print(end)
     diagonal_array = []
     while point != end:
+        print(point[0], point[1])
         diagonal_array.append(board[point[0]][point[1]])
         print(diagonal_array)
         point[0] += 1
@@ -357,12 +359,20 @@ def pick_best_move(board, piece):
         row = get_next_open_row(board, col)
         drop_piece(temp_board, row, col, piece)
         # print(np.flip(temp_board, 0))
+        print(np.flip(temp_board, 0))
         score = score_position(temp_board, piece, col, row)
         print(score)
         if score > best_score:
             best_score = score
             best_col = col
     return best_col
+
+
+# def minimax(cur_depth, node_index, maximizing_player, scores, target_depth):
+#     if cur_depth == target_depth:
+#         return score[node_index]
+#     if (maximizing_player):
+#         return max(minimax(cur_depth + 1, node_index * 2, False, scores, target_depth))
 
 
 board = create_board(ROW_COUNT, COLUMN_COUNT)
