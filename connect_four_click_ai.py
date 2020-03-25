@@ -326,12 +326,9 @@ def score_position(board, piece, col, row):
         end = [row - WINDOW_LENGTH, col + WINDOW_LENGTH]
 
     diagonal_array = []
-    print(end)
 
-    while point[0] != end[0]:
-        print(point[0], point[1])
+    while point[1] != COLUMN_COUNT and point[0] >= 0:
         diagonal_array.append(board[point[0]][point[1]])
-        print(diagonal_array)
         point[0] -= 1
         point[1] += 1
 
@@ -358,8 +355,6 @@ def pick_best_move(board, piece):
         temp_board = board.copy()
         row = get_next_open_row(board, col)
         drop_piece(temp_board, row, col, piece)
-        # print(np.flip(temp_board, 0))
-        print(np.flip(temp_board, 0))
         score = score_position(temp_board, piece, col, row)
         print(score)
         if score > best_score:
@@ -368,9 +363,9 @@ def pick_best_move(board, piece):
     return best_col
 
 
-# def minimax(cur_depth, node_index, maximizing_player, scores, target_depth):
+# def minimax(node_index, cur_depth, maximizing_player, scores, target_depth):
 #     if cur_depth == target_depth:
-#         return score[node_index]
+#         return scores[node_index]
 #     if (maximizing_player):
 #         return max(minimax(cur_depth + 1, node_index * 2, False, scores, target_depth))
 
@@ -434,6 +429,7 @@ while game_over == False:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            print("No Contest")
             sys.exit()
         if event.type == pygame.MOUSEMOTION:
             pygame.draw.rect(screen, BLACK, (0, 0, width, SQUARE_SIZE))
