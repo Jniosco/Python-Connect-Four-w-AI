@@ -289,12 +289,9 @@ def score_position(board, piece, col, row):
         end = [row + (COLUMN_COUNT - col), COLUMN_COUNT]
     else:
         end = [row + WINDOW_LENGTH, col + WINDOW_LENGTH]
-    print(end)
     diagonal_array = []
     while point != end:
-        print(point[0], point[1])
         diagonal_array.append(board[point[0]][point[1]])
-        print(diagonal_array)
         point[0] += 1
         point[1] += 1
 
@@ -313,27 +310,30 @@ def score_position(board, piece, col, row):
     prev_score = score
 
     # creates the start POINT of diagonal
-    if ((row + col) < ROW_COUNT) and (col - 3) <= 0:
+    if row + col < ROW_COUNT and (col - 3 <= 0):
         point = [row + col, 0]
     elif (row + col) >= ROW_COUNT and (row + 3 >= ROW_COUNT):
-        point = [ROW_COUNT - 1, col - (ROW_COUNT - row + 1)]
+        point = [ROW_COUNT - 1, col + 1 - (ROW_COUNT - row)]
     else:
         point = [row + 3, col - 3]
 
     # creates END point of diagonal
-    if (row - WINDOW_LENGTH) <= 0 and (row + col < COLUMN_COUNT):
-        end = [-1, (col + row + 1)]
-    elif (row + col >= COLUMN_COUNT) and (col + WINDOW_LENGTH >= COLUMN_COUNT):
-        end = [row - COLUMN_COUNT + col, COLUMN_COUNT]
+    if (row + WINDOW_LENGTH) >= ROW_COUNT and (col + row >= COLUMN_COUNT):
+        end = [row - (COLUMN_COUNT - col), COLUMN_COUNT]
+    elif (row - WINDOW_LENGTH < 0) and (col + row < COLUMN_COUNT):
+        end = [-1, col + row + 1]
     else:
         end = [row - WINDOW_LENGTH, col + WINDOW_LENGTH]
 
     diagonal_array = []
+    print(end)
 
     while point[0] != end[0]:
+        print(point[0], point[1])
         diagonal_array.append(board[point[0]][point[1]])
+        print(diagonal_array)
         point[0] -= 1
-        point[1] -= 1
+        point[1] += 1
 
     # checks created list of diagonal points. If it is less than 4, it skips the check
 
