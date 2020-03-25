@@ -3,6 +3,7 @@
 A simple connect 4 game with an implemented AI
 Python version 3.6
 Libraries used:
+
 random
 pygame
 numpy
@@ -21,7 +22,10 @@ How to run Connect Four:
             1. player1 versus player2
             2. player1 vs AI
 
-note: If player vs AI is selected, you will be prompted with selecting AI difficulty level (still implementing minimax algorithm)
+    note: If player vs AI is selected, you will be prompted with selecting AI difficulty level
+    (still implementing minimax algorithm)
+
+    Type a number between 1 and 3 and hit enter
 
         Please select AI difficulty:
             1. easy
@@ -36,4 +40,11 @@ note: If player vs AI is selected, you will be prompted with selecting AI diffic
 
     note: recommended row size max 8 and column size 9 for optimal gameplay.
 
-4.  And then play!
+4.  pygame will open and player one will start.
+
+features to be added:
+
+    1. random starting player for initial gameplay.
+    2. rematch button.
+    3. losing player starts upon playing rematch.
+    4. AI difficulty level.
