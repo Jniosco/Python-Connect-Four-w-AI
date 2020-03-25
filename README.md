@@ -4,11 +4,11 @@ A simple connect 4 game with an implemented AI
 Python version 3.6
 Libraries used:
 
-random
-pygame
-numpy
-math
-sys
+    random
+    pygame
+    numpy
+    math
+    sys
 
 How to run Connect Four:
 
